@@ -29,11 +29,13 @@ class MainActivity : AppCompatActivity() {
             model.sampleText.value = "hoge"
         }
 
-        // Modelが変更されたら、Textを受け取ってTextViewに突っ込む
+        // onChangedを持つObserverクラスのインスタンスを作成
+        // Modelが変更されたらonChangedがコールされる。Textを受け取ってTextViewに突っ込む。
         val textObserver = Observer<String> { newText ->
             textView.text = newText
         }
-        // ModelのsampleTextプロパティが変更されるのを監視する
+        // 作成したObserverオブジェクトをLiveDataオブジェクトにアタッチ。
+        // LiveDataは、setValueが呼ばれるとアタッチされたObserverオブジェクトのonChangedをコールバックする。
         model.sampleText.observe(this,textObserver)
 
 

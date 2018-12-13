@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
+    // LiveDataのインスタンスを生成
     val sampleText : MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
