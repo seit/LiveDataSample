@@ -6,27 +6,33 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import uent192837465.google.com.livedatasample.ViewModel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var model: MainViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     private lateinit var textView: TextView
-    private lateinit var button: Button
+    private lateinit var postalCodeEditText: EditText
+    private lateinit var addressEditText: EditText
+    private lateinit var registButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         textView = findViewById(R.id.text) as TextView
-        button = findViewById(R.id.button) as Button
-        model = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        postalCodeEditText = findViewById(R.id.postal_code) as EditText
+        addressEditText = findViewById(R.id.address) as EditText
+        registButton = findViewById(R.id.regist_button) as Button
+
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         // Buttonを押されたらModelの中身を変更する
-        button.setOnClickListener {
-            model.sampleText.value = "hoge"
+        registButton.setOnClickListener {
+            mainViewModel.sampleText.value = "hoge"
         }
 
         // onChangedを持つObserverクラスのインスタンスを作成
@@ -36,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
         // 作成したObserverオブジェクトをLiveDataオブジェクトにアタッチ。
         // LiveDataは、setValueが呼ばれるとアタッチされたObserverオブジェクトのonChangedをコールバックする。
-        model.sampleText.observe(this,textObserver)
+        mainViewModel.sampleText.observe(this,textObserver)
 
 
     }

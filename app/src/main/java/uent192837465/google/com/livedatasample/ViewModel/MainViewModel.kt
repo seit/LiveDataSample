@@ -12,7 +12,6 @@ class MainViewModel(private val repository: PostalCodeRepository) : ViewModel(){
     private var addressInput = MutableLiveData<String>();
     private fun setInput(address: String) {
         addressInput.value = address
-
     }
 
     // FlowableのオブジェクトをLiveDataに変換
