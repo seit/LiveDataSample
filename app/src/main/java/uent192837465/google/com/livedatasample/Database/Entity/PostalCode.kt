@@ -5,8 +5,6 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity
-data class PostalCode(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Long,
-    @ColumnInfo(name = "address") var address: String?,
-    @ColumnInfo(name = "postal_code") var postalCode: String?
-)
+data class PostalCode(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Long?,
+                      @ColumnInfo(name = "address") var address: String?,
+                      @ColumnInfo(name = "postal_code") var postalCode: String?)
